@@ -3,5 +3,4 @@ project(OOP_lp7)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(OOP_lp7
-        main.cpp)
+add_executable(OOP_lp7 main.cpp Figure.cpp Figure.h Cord.cpp Cord.h Pentagon.cpp Pentagon.h Hexagon.cpp Hexagon.h Octagon.cpp Octagon.h)
