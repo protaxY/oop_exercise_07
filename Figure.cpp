@@ -13,3 +13,11 @@ Figure::Figure(Cord center, double radius){
 Cord Figure::GetCenter(){
     return Center;
 }
+
+double Figure::GetRadius(){
+    return Radius;
+}
+
+std::string Figure::GetType(){
+    return Type;
+}
