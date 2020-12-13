@@ -1,6 +1,5 @@
-//
-// Created by prota on 15.10.2020.
-//
+//Федоров Антон Сергеевич М8О-207Б-19
+//вариант 30: 5-ти угольник, 6-ти угольникб 8-ти угольник
 
 #ifndef OOP_EXERCISE_03_FIGURE_H
 #define OOP_EXERCISE_03_FIGURE_H

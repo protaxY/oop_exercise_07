@@ -1,6 +1,5 @@
-//
-// Created by protaxy on 12/12/20.
-//
+//Федоров Антон Сергеевич М8О-207Б-19
+//вариант 30: 5-ти угольник, 6-ти угольник 8-ти угольник
 
 #ifndef OOP_LP7_FACTORY_H
 #define OOP_LP7_FACTORY_H
@@ -21,6 +20,9 @@ struct Factory{
             Cord center;
             double radius;
             std::cin >> center.X >> center.Y >> radius;
+            if (radius < 0){
+                throw std::invalid_argument("incorrect radius");
+            }
             Pentagon* pentagon = new Pentagon(center, radius);
             result = std::shared_ptr<Figure>(pentagon);
         } else if (type == "Hexagon"){
@@ -28,6 +30,9 @@ struct Factory{
             Cord center;
             double radius;
             std::cin >> center.X >> center.Y >> radius;
+            if (radius < 0){
+                throw std::invalid_argument("incorrect radius");
+            }
             Hexagon* hexagon = new Hexagon(center, radius);
             result = std::shared_ptr<Figure>(hexagon);
         } else if (type == "Octagon"){
@@ -35,8 +40,13 @@ struct Factory{
             Cord center;
             double radius;
             std::cin >> center.X >> center.Y >> radius;
+            if (radius < 0){
+                throw std::invalid_argument("incorrect radius");
+            }
             Octagon* octagon = new Octagon(center, radius);
             result = std::shared_ptr<Figure>(octagon);
+        } else {
+            throw std::invalid_argument("unknown figure type");
         }
         return result;
     }

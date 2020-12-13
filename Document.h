@@ -1,3 +1,6 @@
+//Федоров Антон Сергеевич М8О-207Б-19
+//вариант 30: 5-ти угольник, 6-ти угольник 8-ти угольник
+
 #ifndef OOP_LP7_DOCUMENT_H
 #define OOP_LP7_DOCUMENT_H
 
@@ -16,7 +19,6 @@
 
 struct Event{
     virtual void Undo(std::list<std::shared_ptr<Figure>>&) = 0;
-    //virtual ~Event() = default;
 };
 
 struct AddEvent: public Event{
@@ -30,7 +32,6 @@ struct AddEvent: public Event{
         }
         Data.erase(iter);
     }
-    //~AddEvent() override = default;
 };
 
 struct DeleteEvent: public Event{
@@ -44,7 +45,6 @@ struct DeleteEvent: public Event{
         }
         Data.insert(iter, FigureToDelete);
     }
-    //~DeleteEvent() override = default;
 };
 
 class Document{
@@ -53,6 +53,9 @@ private:
     std::list<std::shared_ptr<Figure>> Data;
     Factory<Figure> factory;
 public:
+    size_t GetSize(){
+        return Data.size();
+    }
     void Create(){
         Data.clear();
         while(!History.empty()){
@@ -61,7 +64,6 @@ public:
         std::cout << "document created\n";
     }
     void Add(size_t pos, std::string &type){
-        //if (pos )
         std::shared_ptr<Figure> figure = factory.CreateFigure(type);
         AddEvent event(pos, figure);
         History.push(std::shared_ptr<Event>(new AddEvent(pos, figure)));
@@ -106,10 +108,12 @@ public:
         fout << Data.size() << "\n";
         auto iter = Data.begin();
         for (int i = 0; i < Data.size(); ++i){
-            fout << iter -> get() -> GetType() << " " << iter -> get() -> GetCenter().X << " " << iter -> get() -> GetCenter().Y << " " << iter -> get() -> GetRadius() << "\n";
+            fout << iter -> get() -> GetType() << " " << iter -> get() -> GetCenter().X << " " <<
+            iter -> get() -> GetCenter().Y << " " << iter -> get() -> GetRadius() << "\n";
             iter++;
         }
         fout.close();
+        std::cout << "saved\n";
     }
     void Load(std::string &fileName){
         Data.clear();
@@ -142,6 +146,7 @@ public:
             }
         }
         fin.close();
+        std::cout << "loaded\n";
     }
 };
 

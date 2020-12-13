@@ -1,5 +1,5 @@
 //Федоров Антон Сергеевич М8О-207Б-19
-//вариант 30: 5-ти угольник, 6-ти угольникб 8-ти угольник
+//вариант 30: 5-ти угольник, 6-ти угольник 8-ти угольник
 
 #include <iostream>
 
@@ -13,8 +13,11 @@ int main() {
         try{
             if (function == '+'){
                 std::cout << "enter position for insert:";
-                size_t pos;
+                int pos;
                 std::cin >> pos;
+                if (pos < 0 || pos > doc.GetSize()){
+                    throw std::invalid_argument("invalid position to insert");
+                }
                 std::cout << "enter type of figure:";
                 std::string type;
                 std::cin >> type;
@@ -22,8 +25,11 @@ int main() {
             }
             if (function == '-'){
                 std::cout << "enter position for delete:";
-                size_t pos;
+                int pos;
                 std::cin >> pos;
+                if (pos < 0 || pos > doc.GetSize()){
+                    throw std::invalid_argument("invalid position to delete");
+                }
                 doc.Delete(pos);
             }
             if (function == 's'){
